@@ -1956,23 +1956,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/posts',
-      posts: []
+      posts: [],
+      lastPage: null,
+      currentPage: 1
     };
   },
   created: function created() {
-    this.getPosts();
+    this.getPosts(1);
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(move) {
       var _this = this;
 
-      axios.get(this.apiUrl).then(function (res) {
-        _this.posts = res.data.results;
+      axios.get(this.apiUrl, {
+        params: {
+          page: move
+        }
+      }).then(function (res) {
+        _this.posts = res.data.results.data;
+        _this.lastPage = res.data.results.last_page;
+        _this.currentPage = res.data.results.current_page;
         console.log(_this.posts);
       });
     }
@@ -37732,30 +37751,86 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
-      _vm._l(_vm.posts, function(post) {
-        return _c("div", { key: post.id, staticClass: "col-6" }, [
-          _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(post.title))
+      [
+        _vm._l(_vm.posts, function(post) {
+          return _c("div", { key: post.id, staticClass: "col-6" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "18rem" } },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v(_vm._s(post.title))
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                    _vm._v(_vm._s(post.created_at))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(_vm._s(post.article))
+                  ]),
+                  _vm._v(" "),
+                  _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+                    _vm._v("Show more")
+                  ])
+                ])
+              ]
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "my-4" }, [
+          _c("h4", [
+            _c("strong", [
+              _vm._v(
+                "Risultati " +
+                  _vm._s(_vm.currentPage) +
+                  " di " +
+                  _vm._s(_vm.lastPage) +
+                  " pagine"
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+            _c("ul", { staticClass: "pagination" }, [
+              _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPosts(_vm.currentPage - 1)
+                      }
+                    }
+                  },
+                  [_vm._v("Prima")]
+                )
               ]),
               _vm._v(" "),
-              _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                _vm._v(_vm._s(post.created_at))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(_vm._s(post.article))
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-                _vm._v("Show more")
+              _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPosts(_vm.currentPage + 1)
+                      }
+                    }
+                  },
+                  [_vm._v("Dopo")]
+                )
               ])
             ])
           ])
         ])
-      }),
-      0
+      ],
+      2
     )
   ])
 }
