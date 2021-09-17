@@ -2,7 +2,7 @@
     <div>
         <Header/>
         <Main/>
-        ciao
+       
     </div>
 </template>
 <script>

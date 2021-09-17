@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Homepage</title>
-        <link rel="stylesheet" href="{{asset('sccs/app.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/app.css')}}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -13,7 +13,7 @@
         
     </head>
     <body>
-        ciao
+        
         {{-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
