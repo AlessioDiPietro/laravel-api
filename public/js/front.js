@@ -2005,6 +2005,21 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return text;
+    },
+    dataImp: function dataImp(data) {
+      var postData = new Date(data);
+      var day = postData.getDate();
+      var month = parseInt(postData.getMonth() + 1);
+
+      if (day < 10) {
+        day = '0' + day;
+      }
+
+      if (month < 10) {
+        month = '0' + month;
+      }
+
+      return day + '-' + month + '-' + postData.getFullYear();
     }
   }
 });
@@ -37771,7 +37786,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                _vm._v(_vm._s(post.created_at))
+                _vm._v(_vm._s(_vm.dataImp(post.created_at)))
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-text" }, [

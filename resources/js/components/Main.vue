@@ -5,7 +5,7 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{post.created_at}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ dataImp(post.created_at) }}</h6>
                     <p class="card-text">{{smallText(post.article, 120)}}</p>
                     <a href="#" class="card-link">Show more</a>
                     
@@ -65,6 +65,18 @@ export default {
                 return text.substr(0, maxlength) + '...Altro';
             }
             return text;
+        },
+        dataImp(data){
+            const postData = new Date(data);
+            let day = postData.getDate();
+            let month = parseInt(postData.getMonth() +1);
+            if(day < 10){
+                day = '0' + day;
+            }
+            if(month < 10){
+                month = '0' + month;
+            }
+            return day + '-' + month + '-' + postData.getFullYear();
         }
 
     }
