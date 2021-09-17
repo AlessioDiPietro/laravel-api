@@ -1973,6 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.apiUrl).then(function (res) {
         _this.posts = res.data.results;
+        console.log(_this.posts);
       });
     }
   }
@@ -37733,43 +37734,32 @@ var render = function() {
       { staticClass: "row" },
       _vm._l(_vm.posts, function(post) {
         return _c("div", { key: post.id, staticClass: "col-6" }, [
-          _vm._m(0, true)
+          _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(post.title))
+              ]),
+              _vm._v(" "),
+              _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                _vm._v(_vm._s(post.created_at))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(post.article))
+              ]),
+              _vm._v(" "),
+              _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+                _vm._v("Show more")
+              ])
+            ])
+          ])
         ])
       }),
       0
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h5", { staticClass: "card-title" }, [_vm._v("Card title")]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-          _vm._v("Card subtitle")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(
-            "Some quick example text to build on the card title and make up the bulk of the card's content."
-          )
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-          _vm._v("Card link")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-          _vm._v("Another link")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
