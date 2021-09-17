@@ -37751,87 +37751,95 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
-      [
-        _vm._l(_vm.posts, function(post) {
-          return _c("div", { key: post.id, staticClass: "col-6" }, [
-            _c(
-              "div",
-              { staticClass: "card", staticStyle: { width: "18rem" } },
-              [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                    _vm._v(_vm._s(post.created_at))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.article))
-                  ]),
-                  _vm._v(" "),
-                  _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-                    _vm._v("Show more")
-                  ])
-                ])
-              ]
-            )
-          ])
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "my-4" }, [
-          _c("h4", [
-            _c("strong", [
-              _vm._v(
-                "Risultati " +
-                  _vm._s(_vm.currentPage) +
-                  " di " +
-                  _vm._s(_vm.lastPage) +
-                  " pagine"
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-            _c("ul", { staticClass: "pagination" }, [
-              _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.getPosts(_vm.currentPage - 1)
-                      }
-                    }
-                  },
-                  [_vm._v("Prima")]
-                )
+      _vm._l(_vm.posts, function(post) {
+        return _c("div", { key: post.id, staticClass: "col-6" }, [
+          _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(post.title))
               ]),
               _vm._v(" "),
-              _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.getPosts(_vm.currentPage + 1)
-                      }
-                    }
-                  },
-                  [_vm._v("Dopo")]
-                )
+              _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                _vm._v(_vm._s(post.created_at))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(post.article))
+              ]),
+              _vm._v(" "),
+              _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+                _vm._v("Show more")
               ])
             ])
           ])
         ])
-      ],
-      2
-    )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "my-4" }, [
+      _c("h4", [
+        _c("strong", [
+          _vm._v(
+            "Risultati " +
+              _vm._s(_vm.currentPage) +
+              " di " +
+              _vm._s(_vm.lastPage) +
+              " pagine"
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c("ul", { staticClass: "pagination" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.currentPage === 0 }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getPosts(_vm.currentPage - 1)
+                    }
+                  }
+                },
+                [_vm._v("Prima")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.currentPage === _vm.lastPage }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getPosts(_vm.currentPage + 1)
+                    }
+                  }
+                },
+                [_vm._v("Dopo")]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

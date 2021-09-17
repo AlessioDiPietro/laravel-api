@@ -12,17 +12,17 @@
                 </div>
             </div>
         </div>
-        <div class="my-4">
-            <h4><strong>Risultati {{currentPage}} di {{lastPage}} pagine</strong> </h4>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><button class="page-link" href="#" @click="getPosts(currentPage - 1)">Prima</button></li>
-                    
-                    <li class="page-item"><button class="page-link" href="#"  @click="getPosts(currentPage + 1)">Dopo</button></li>
-                </ul>
-            </nav>
-        </div>
         
+    </div>
+    <div class="my-4">
+        <h4><strong>Risultati {{currentPage}} di {{lastPage}} pagine</strong> </h4>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" :class="{'disabled' : currentPage === 0 }"><button class="page-link"  href="#" @click="getPosts(currentPage - 1)">Prima</button></li>
+                    
+                <li class="page-item" :class="{'disabled' : currentPage === lastPage }"><button class="page-link"  href="#"  @click="getPosts(currentPage + 1)">Dopo</button></li>
+            </ul>
+        </nav>
     </div>
 </div>
 </template>
