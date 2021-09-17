@@ -1967,6 +1967,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
   data: function data() {
@@ -1994,6 +1998,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.currentPage = res.data.results.current_page;
         console.log(_this.posts);
       });
+    },
+    smallText: function smallText(text, maxlength) {
+      if (text.length > maxlength) {
+        return text.substr(0, maxlength) + '...Altro';
+      }
+
+      return text;
     }
   }
 });
@@ -37764,7 +37775,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-text" }, [
-                _vm._v(_vm._s(post.article))
+                _vm._v(_vm._s(_vm.smallText(post.article, 120)))
               ]),
               _vm._v(" "),
               _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
@@ -37791,53 +37802,78 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-        _c("ul", { staticClass: "pagination" }, [
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: { disabled: _vm.currentPage === 0 }
-            },
-            [
-              _c(
-                "button",
+        _c(
+          "ul",
+          { staticClass: "pagination" },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: _vm.currentPage === 0 }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPosts(_vm.currentPage - 1)
+                      }
+                    }
+                  },
+                  [_vm._v("Prima")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.lastPage, function(i) {
+              return _c(
+                "li",
                 {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
+                  key: i,
+                  staticClass: "page-item",
                   on: {
                     click: function($event) {
-                      return _vm.getPosts(_vm.currentPage - 1)
+                      return _vm.getPosts(i)
                     }
                   }
                 },
-                [_vm._v("Prima")]
+                [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(i))
+                  ])
+                ]
               )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: { disabled: _vm.currentPage === _vm.lastPage }
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      return _vm.getPosts(_vm.currentPage + 1)
+            }),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: _vm.currentPage === _vm.lastPage }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPosts(_vm.currentPage + 1)
+                      }
                     }
-                  }
-                },
-                [_vm._v("Dopo")]
-              )
-            ]
-          )
-        ])
+                  },
+                  [_vm._v("Dopo")]
+                )
+              ]
+            )
+          ],
+          2
+        )
       ])
     ])
   ])

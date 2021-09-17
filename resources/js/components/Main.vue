@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{post.created_at}}</h6>
-                    <p class="card-text">{{post.article}}</p>
+                    <p class="card-text">{{smallText(post.article, 120)}}</p>
                     <a href="#" class="card-link">Show more</a>
                     
                 </div>
@@ -20,6 +20,10 @@
             <ul class="pagination">
                 <li class="page-item" :class="{'disabled' : currentPage === 0 }"><button class="page-link"  href="#" @click="getPosts(currentPage - 1)">Prima</button></li>
                     
+                <li class="page-item" v-for="i in lastPage" :key="i" @click="getPosts(i)"><a href="#" class="page-link">{{i}}</a>
+                </li>
+
+
                 <li class="page-item" :class="{'disabled' : currentPage === lastPage }"><button class="page-link"  href="#"  @click="getPosts(currentPage + 1)">Dopo</button></li>
             </ul>
         </nav>
@@ -55,6 +59,12 @@ export default {
                     this.currentPage = res.data.results.current_page;
                     console.log(this.posts);
                 })
+        },
+        smallText(text, maxlength){
+            if(text.length > maxlength){
+                return text.substr(0, maxlength) + '...Altro';
+            }
+            return text;
         }
 
     }
